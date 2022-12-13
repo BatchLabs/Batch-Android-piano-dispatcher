@@ -1,0 +1,62 @@
+plugins {
+    id 'com.android.library'
+}
+
+ext {
+    mavenGroupId = 'com.batch.android'
+    mavenArtifact = 'piano-dispatcher'
+    powerMockVersion = '2.0.7'
+}
+
+android {
+    namespace 'com.batch.android.dispatcher.piano'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 16
+        targetSdk 33
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            all {
+                testLogging {
+                    events "started", "passed", "skipped", "failed"
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+
+    api 'com.batch.android:batch-sdk:1.19.3'
+    api 'io.piano:analytics:3.1.0'
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'androidx.test.ext:junit:1.1.4'
+    testImplementation 'org.mockito:mockito-core:3.4.6'
+    testImplementation 'org.mockito:mockito-inline:3.4.6' // Mockito extension to mock final class
+    testImplementation 'org.robolectric:robolectric:4.7.1'
+    testImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    testImplementation "org.powermock:powermock-module-junit4:$powerMockVersion"
+    testImplementation "org.powermock:powermock-module-junit4-rule:$powerMockVersion"
+    testImplementation "org.powermock:powermock-api-mockito2:$powerMockVersion"
+    testImplementation "org.powermock:powermock-classloading-xstream:$powerMockVersion"
+}
