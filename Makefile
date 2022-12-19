@@ -20,3 +20,6 @@ ci: clean lint test aar
 
 publish: aar
 	./gradlew piano-dispatcher:publish
+
+.PHONY: test aar
+
