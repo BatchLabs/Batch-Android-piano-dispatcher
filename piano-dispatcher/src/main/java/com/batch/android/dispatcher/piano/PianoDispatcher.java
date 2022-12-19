@@ -100,6 +100,12 @@ public class PianoDispatcher implements BatchEventDispatcher {
     private boolean customEventsEnabled = false;
 
     /**
+     * Whether Batch should handle UTM tags in campaign's deeplink
+     * and custom payload. (default = true)
+     */
+    private boolean isUTMTrackingEnabled = true;
+
+    /**
      * Constructor
      *
      * @param context application context
@@ -118,6 +124,14 @@ public class PianoDispatcher implements BatchEventDispatcher {
      */
     public void enableBatchCustomEvents(boolean enabled) {
         this.customEventsEnabled = enabled;
+    }
+
+    /**
+     * Whether Batch should handle UTM tags in campaign's deeplink
+     * and custom payload. (default = true)
+     */
+    public void enableUTMTracking(boolean enabled) {
+        this.isUTMTrackingEnabled = enabled;
     }
 
     /**
@@ -250,7 +264,7 @@ public class PianoDispatcher implements BatchEventDispatcher {
             return campaign;
         }
         campaign = getTagFromPayload(payload, UTM_CAMPAIGN);
-        if (campaign != null && !campaign.isEmpty()) {
+        if (isUTMTrackingEnabled && campaign != null && !campaign.isEmpty()) {
             return campaign;
         }
         campaign = payload.getTrackingId();
@@ -278,7 +292,7 @@ public class PianoDispatcher implements BatchEventDispatcher {
             return medium;
         }
         medium = getTagFromPayload(payload, UTM_MEDIUM);
-        if (medium != null && !medium.isEmpty()) {
+        if (isUTMTrackingEnabled && medium != null && !medium.isEmpty()) {
             return medium;
         }
         if (type.isNotificationEvent()) {
@@ -301,7 +315,7 @@ public class PianoDispatcher implements BatchEventDispatcher {
     @NonNull
     private String getSource(@NonNull Batch.EventDispatcher.Payload payload) {
         String source = getTagFromPayload(payload, UTM_SOURCE);
-        if (source != null && !source.isEmpty()) {
+        if (isUTMTrackingEnabled && source != null && !source.isEmpty()) {
             return source;
         }
         return BATCH_SRC;
@@ -319,7 +333,7 @@ public class PianoDispatcher implements BatchEventDispatcher {
     @Nullable
     private String getContent(@NonNull Batch.EventDispatcher.Payload payload) {
         String content = getTagFromPayload(payload, UTM_CONTENT);
-        if (content != null && !content.isEmpty()) {
+        if (isUTMTrackingEnabled && content != null && !content.isEmpty()) {
             return content;
         }
         return null;

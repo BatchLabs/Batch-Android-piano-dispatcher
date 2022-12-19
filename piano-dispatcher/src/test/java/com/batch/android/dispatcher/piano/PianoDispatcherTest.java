@@ -215,6 +215,27 @@ public class PianoDispatcherTest {
     }
 
     @Test
+    public void testUTMTrackingDisabled() {
+        Bundle customPayload = new Bundle();
+        customPayload.putString("utm_campaign", "campaign_label");
+        customPayload.putString("utm_medium", "email");
+        customPayload.putString("utm_source", "firebase");
+        customPayload.putString("utm_content", "content");
+        TestEventPayload payload = new TestEventPayload("batchTrackingId", null, customPayload);
+        dispatcher.enableUTMTracking(false);
+        Event event = dispatcher.buildPianoCustomEvent(Batch.EventDispatcher.Type.NOTIFICATION_DISPLAY, payload);
+        HashMap<String, Object> expectedData = new HashMap<String, Object>() {{
+            put("src_campaign", "batchTrackingId");
+            put("src_source", "Batch");
+            put("src_force", true);
+            put("src_medium", "push");
+            put("batch_tracking_id", "batchTrackingId");
+        }};
+        Assert.assertEquals("batch_notification_display", event.getName());
+        Assert.assertEquals(expectedData, event.getData());
+    }
+
+    @Test
     public void testBuildPianoOnSiteAdsEventImpressionPush() {
         TestEventPayload payload = new TestEventPayload("campaign_label", null, null);
         Event event = dispatcher.buildPianoOnSiteAdsEvent(Batch.EventDispatcher.Type.NOTIFICATION_DISPLAY, payload);
