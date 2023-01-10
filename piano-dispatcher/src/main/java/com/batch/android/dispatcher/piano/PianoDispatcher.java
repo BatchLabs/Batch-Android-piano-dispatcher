@@ -100,6 +100,11 @@ public class PianoDispatcher implements BatchEventDispatcher {
     private boolean customEventsEnabled = false;
 
     /**
+     * Whether Batch should send onSiteAds events (default: true)
+     */
+    private boolean onSiteAdsEventsEnabled = true;
+
+    /**
      * Whether Batch should handle UTM tags in campaign's deeplink
      * and custom payload. (default = true)
      */
@@ -115,15 +120,24 @@ public class PianoDispatcher implements BatchEventDispatcher {
     }
 
     /**
-     * Whether Batch should dispatch as Piano Custom Event.
+     * Whether Batch should dispatch events as Piano Custom Event.
      *
-     * Note: This method should be called the as soon as possible in your Application subclass
+     * Note: This method should be called as soon as possible in your Application subclass
      * just after your Piano Configuration.
      *
-     * @param enabled true if you want to enable custom events
+     * @param enabled true if you want to enable custom events sending
      */
     public void enableBatchCustomEvents(boolean enabled) {
         this.customEventsEnabled = enabled;
+    }
+
+    /**
+     * Whether Batch should dispatch as Piano OnSite-Ads Event.
+     *
+     * @param enabled true if you want to enable OnSite-Ads events sending
+     */
+    public void enableBatchOnSiteAdsEvents(boolean enabled) {
+        this.onSiteAdsEventsEnabled = enabled;
     }
 
     /**
@@ -164,7 +178,7 @@ public class PianoDispatcher implements BatchEventDispatcher {
     public void dispatchEvent(@NonNull Batch.EventDispatcher.Type type, @NonNull Batch.EventDispatcher.Payload payload) {
 
         // Dispatch onSiteAds event
-        if (shouldBeDispatchedAsOnSiteAd(type)) {
+        if (onSiteAdsEventsEnabled && shouldBeDispatchedAsOnSiteAd(type)) {
             Event onSiteAdsEvent = buildPianoOnSiteAdsEvent(type, payload);
             if (onSiteAdsEvent != null) {
                 pianoAnalytics.sendEvent(onSiteAdsEvent);

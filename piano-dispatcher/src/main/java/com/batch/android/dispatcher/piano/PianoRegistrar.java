@@ -18,6 +18,11 @@ public class PianoRegistrar implements DispatcherRegistrar {
     private static final String CUSTOM_EVENT_ENABLED_METADATA = "com.batch.android.dispatcher.piano.enable_custom_events";
 
     /**
+     * Meta-data name to enable On-Site Ads events
+     */
+    private static final String ONSITE_AD_EVENT_ENABLED_METADATA = "com.batch.android.dispatcher.piano.enable_onsite_ad_events";
+
+    /**
      * Meta-data name to enable utm tracking
      */
     private static final String UTM_TRACKING_ENABLED_METADATA = "com.batch.android.dispatcher.piano.enable_utm_tracking";
@@ -27,6 +32,7 @@ public class PianoRegistrar implements DispatcherRegistrar {
         if (instance == null) {
             instance = new PianoDispatcher(context);
             instance.enableBatchCustomEvents(getBooleanMetaDataInfo(context, CUSTOM_EVENT_ENABLED_METADATA, false));
+            instance.enableBatchOnSiteAdsEvents(getBooleanMetaDataInfo(context, ONSITE_AD_EVENT_ENABLED_METADATA, true));
             instance.enableUTMTracking(getBooleanMetaDataInfo(context, UTM_TRACKING_ENABLED_METADATA, true));
         }
         return instance;
