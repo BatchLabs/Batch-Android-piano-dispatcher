@@ -5,7 +5,7 @@ plugins {
 ext {
     mavenGroupId = 'com.batch.android'
     mavenArtifact = 'piano-dispatcher'
-    powerMockVersion = '2.0.7'
+    powerMockVersion = '2.0.9'
 }
 
 android {
@@ -50,11 +50,11 @@ dependencies {
     api 'io.piano:analytics:3.2.0'
 
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'androidx.test.ext:junit:1.1.4'
+    testImplementation 'androidx.test.ext:junit:1.1.5'
     testImplementation 'org.mockito:mockito-core:3.4.6'
     testImplementation 'org.mockito:mockito-inline:3.4.6' // Mockito extension to mock final class
-    testImplementation 'org.robolectric:robolectric:4.7.1'
-    testImplementation 'androidx.test.espresso:espresso-core:3.5.0'
+    testImplementation 'org.robolectric:robolectric:4.9.2'
+    testImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     testImplementation "org.powermock:powermock-module-junit4:$powerMockVersion"
     testImplementation "org.powermock:powermock-module-junit4-rule:$powerMockVersion"
     testImplementation "org.powermock:powermock-api-mockito2:$powerMockVersion"
