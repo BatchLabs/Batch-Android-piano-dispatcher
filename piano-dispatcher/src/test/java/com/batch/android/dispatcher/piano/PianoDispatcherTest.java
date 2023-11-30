@@ -30,11 +30,11 @@ import io.piano.analytics.PianoAnalytics;
 @PrepareForTest(PianoAnalytics.class)
 public class PianoDispatcherTest {
 
-    private PianoDispatcher dispatcher;
+    private LegacyPianoDispatcher dispatcher;
 
     @Before
     public void setUp() {
-        this.dispatcher = new PianoDispatcher(ApplicationProvider.getApplicationContext());
+        this.dispatcher = new LegacyPianoDispatcher(ApplicationProvider.getApplicationContext());
     }
 
     @Test

@@ -36,7 +36,7 @@ public class PianoRegistrar implements DispatcherRegistrar {
                         " This dispatcher requires version 3.2.1 or older. Aborting initialization.");
                 return null;
             }
-            instance = new PianoDispatcher(context);
+            instance = new LegacyPianoDispatcher(context);
             instance.enableBatchCustomEvents(getBooleanMetaDataInfo(context, CUSTOM_EVENT_ENABLED_METADATA, false));
             instance.enableBatchOnSiteAdsEvents(getBooleanMetaDataInfo(context, ONSITE_AD_EVENT_ENABLED_METADATA, true));
             instance.enableUTMTracking(getBooleanMetaDataInfo(context, UTM_TRACKING_ENABLED_METADATA, true));

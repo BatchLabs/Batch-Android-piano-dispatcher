@@ -1,9 +1,6 @@
 package com.batch.android.dispatcher.piano;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
-import com.batch.android.json.JSONObject;
 
 import org.mockito.ArgumentMatcher;
 import org.mockito.Mockito;
