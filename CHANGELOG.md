@@ -1,3 +1,8 @@
+1.0.1
+-----
+
+* Added verification to ensure the dispatcher is running on the right Piano SDK version (3.2.1 or older) while waiting for us to support the new version (3.3.0+).
+
 1.0.0
 -----
 
