@@ -21,7 +21,7 @@ import java.util.Set;
  * If you want to dispatch as custom event, please see {@link LegacyPianoDispatcher#enableBatchCustomEvents(boolean)}.
  * Note: if you enable custom events, you need to declare them in your Piano Data Model.
  */
-public abstract class PianoDispatcher implements BatchEventDispatcher {
+public abstract class AbstractPianoDispatcher implements BatchEventDispatcher {
 
     /**
      * Batch internal dispatcher information used for analytics
@@ -158,7 +158,7 @@ public abstract class PianoDispatcher implements BatchEventDispatcher {
      * First, check for an "at_campaign" tag in the custom payload, or in the deeplink.
      * If not, check for an "utm_campaign" tag in the custom payload, or in the deeplink.
      * If not, check if there is a TrackingID attached.
-     * If not, use {@link PianoDispatcher#BATCH_DEFAULT_CAMPAIGN}
+     * If not, use {@link AbstractPianoDispatcher#BATCH_DEFAULT_CAMPAIGN}
      *
      * @param payload Batch event payload
      * @return The campaign label.

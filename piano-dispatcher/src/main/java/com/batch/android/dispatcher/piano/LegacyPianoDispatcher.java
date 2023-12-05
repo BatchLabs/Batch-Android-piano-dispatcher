@@ -18,7 +18,7 @@ import io.piano.analytics.PianoAnalytics;
  * Legacy Piano Event Dispatcher
  * Instantiated when running on Piano SDK 3.2.1 or older.
  */
-public class LegacyPianoDispatcher extends PianoDispatcher {
+public class LegacyPianoDispatcher extends AbstractPianoDispatcher {
 
     /**
      * Piano Analytics instance
