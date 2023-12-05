@@ -10,7 +10,7 @@ import com.batch.android.eventdispatcher.DispatcherRegistrar;
 
 public class PianoRegistrar implements DispatcherRegistrar {
 
-    private static PianoDispatcher instance = null;
+    private static AbstractPianoDispatcher instance = null;
 
     /**
      * Meta-data name to enable custom events
@@ -30,13 +30,12 @@ public class PianoRegistrar implements DispatcherRegistrar {
     @Override
     public BatchEventDispatcher getDispatcher(Context context) {
         if (instance == null) {
-            // Abort initialization when the App is running on the new Piano SDK.
             if (isNewPianoSDKPresent()) {
-                Log.e("Batch", "PianoDispatcher - It looks like you are using an unsupported version of the Piano SDK." +
-                        " This dispatcher requires version 3.2.1 or older. Aborting initialization.");
-                return null;
+                instance = new KtPianoDispatcher();
+            } else {
+                Log.w("Batch", "PianoDispatcher - It looks like your app is running with an old version of the Piano Analytics SDK. You should migrate on version 3.3.0 or newer.");
+                instance = new LegacyPianoDispatcher(context);
             }
-            instance = new LegacyPianoDispatcher(context);
             instance.enableBatchCustomEvents(getBooleanMetaDataInfo(context, CUSTOM_EVENT_ENABLED_METADATA, false));
             instance.enableBatchOnSiteAdsEvents(getBooleanMetaDataInfo(context, ONSITE_AD_EVENT_ENABLED_METADATA, true));
             instance.enableUTMTracking(getBooleanMetaDataInfo(context, UTM_TRACKING_ENABLED_METADATA, true));
