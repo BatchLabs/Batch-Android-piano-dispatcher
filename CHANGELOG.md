@@ -1,3 +1,10 @@
+2.0.0
+-----
+
+**Breaking:** Batch Piano Analytics dispatcher now uses Kotlin and requires Android `minSdk` 21.
+
+* Added compatibility with Piano Analytics SDK 3.3.0 and newer.
+
 1.0.1
 -----
 
