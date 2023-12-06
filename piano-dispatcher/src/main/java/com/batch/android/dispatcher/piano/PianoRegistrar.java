@@ -31,7 +31,7 @@ public class PianoRegistrar implements DispatcherRegistrar {
     public BatchEventDispatcher getDispatcher(Context context) {
         if (instance == null) {
             if (isNewPianoSDKPresent()) {
-                instance = new KtPianoDispatcher();
+                instance = new PianoDispatcher();
             } else {
                 Log.w("Batch", "PianoDispatcher - It looks like your app is running with an old version of the Piano Analytics SDK. You should migrate on version 3.3.0 or newer.");
                 instance = new LegacyPianoDispatcher(context);
