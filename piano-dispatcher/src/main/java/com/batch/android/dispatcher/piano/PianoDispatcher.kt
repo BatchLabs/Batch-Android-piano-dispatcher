@@ -12,7 +12,7 @@ import io.piano.android.analytics.model.PropertyName
  * Piano Event Dispatcher (Kotlin)
  * Instantiated when running on Piano SDK 3.3.0 or newer.
  */
-class KtPianoDispatcher() : AbstractPianoDispatcher() {
+class PianoDispatcher() : AbstractPianoDispatcher() {
 
     /**
      * Callback fired when a new Batch event is triggered
@@ -65,7 +65,6 @@ class KtPianoDispatcher() : AbstractPianoDispatcher() {
     ): Event {
         val name = getPianoEventName(type)
         val data: MutableSet<Property> = mutableSetOf(
-            Property(PropertyName(ON_SITE_TYPE), ON_SITE_TYPE_PUBLISHER),
             Property(PropertyName(SOURCE), getSource(payload)),
             Property(PropertyName(CAMPAIGN), getCampaign(payload)),
             Property(PropertyName(MEDIUM), getMedium(payload, type)),
