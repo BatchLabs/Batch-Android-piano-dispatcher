@@ -32,9 +32,11 @@ public class PianoRegistrar implements DispatcherRegistrar {
         if (instance == null) {
             if (isNewPianoSDKPresent()) {
                 instance = new PianoDispatcher();
-            } else {
+            } else if(isOldPianoSDKPresent()) {
                 Log.w("Batch", "PianoDispatcher - It looks like your app is running with an old version of the Piano Analytics SDK. You should migrate on version 3.3.0 or newer.");
                 instance = new LegacyPianoDispatcher(context);
+            } else {
+                Log.w("Batch", "PianoDispatcher - It looks like the Piano Analytics SDK is not present. Did you add the dependency in your build.gradle?");
             }
             instance.enableBatchCustomEvents(getBooleanMetaDataInfo(context, CUSTOM_EVENT_ENABLED_METADATA, false));
             instance.enableBatchOnSiteAdsEvents(getBooleanMetaDataInfo(context, ONSITE_AD_EVENT_ENABLED_METADATA, true));
@@ -72,6 +74,19 @@ public class PianoRegistrar implements DispatcherRegistrar {
     private boolean isNewPianoSDKPresent() {
         try {
             Class.forName("io.piano.android.analytics.PianoAnalytics");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Check if the old  Java Piano SDK (3.2.1-) is present.
+     * @return Whether the old Piano SDK is present.
+     */
+    private boolean isOldPianoSDKPresent() {
+        try {
+            Class.forName("io.piano.analytics.PianoAnalytics");
             return true;
         } catch (ClassNotFoundException e) {
             return false;
