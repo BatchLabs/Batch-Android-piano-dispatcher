@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
@@ -28,7 +29,7 @@ import io.piano.analytics.PianoAnalytics;
 @Config(sdk = Build.VERSION_CODES.S)
 @PowerMockIgnore({"org.powermock.*", "org.mockito.*", "org.robolectric.*", "android.*", "androidx.*"})
 @PrepareForTest(PianoAnalytics.class)
-public class PianoDispatcherTest {
+public class LegacyPianoDispatcherTest {
 
     private LegacyPianoDispatcher dispatcher;
 
