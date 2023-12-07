@@ -5,6 +5,7 @@
 
 * Bumped `targetSdk` version to 34.
 * Added compatibility with Piano Analytics SDK 3.3.0 and newer.
+* Piano Analytics SDK is no longer included in the plugin as transitive dependency. You have to explicitly add the dependency in your build.gradle.
 
 1.0.1
 -----
