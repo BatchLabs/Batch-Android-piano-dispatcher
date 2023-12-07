@@ -12,17 +12,16 @@ A "ready-to-go" dispatcher that reflect event from the Batch SDK to the Piano da
 
 # Requirements
  - Android Studio 3.0+
- - Android 16+
- - Batch Android SDK 1.19.3+
- - Piano Analytics [3.1.0...3.2.1]
+ - Android 21+
+ - Batch Android SDK 1.20.1+
+ - Piano Analytics 3.1.0+
 
-> The Android Piano Analytics dispatcher requires version 3.2.1 or older of the Piano SDK since it does NOT support yet the rewritten Kotlin Piano SDK.
 
 # Installation
 Gradle (recommended)
 
 ```
-implementation 'com.batch.android:piano-dispatcher:1.0.1'
+implementation 'com.batch.android:piano-dispatcher:2.0.0'
 ```
 
 Read our [setup documentation](https://doc.batch.com/) to follow a step by step tutorial for integrating Batch features into your app.
